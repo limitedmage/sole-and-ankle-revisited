@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import { DialogOverlay, DialogContent } from "@reach/dialog";
 
-import { COLORS, WEIGHTS } from "../../constants";
+import { QUERIES, WEIGHTS } from "../../constants";
 
 import UnstyledButton from "../UnstyledButton";
 import Icon from "../Icon";
@@ -15,12 +15,13 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
   }
 
   return (
-    <Overlay>
+    <Overlay isOpen={isOpen} onDismiss={onDismiss}>
       <Content>
         <CloseButton onClick={onDismiss}>
           <VisuallyHidden>Dismiss menu</VisuallyHidden>
-          <Icon id="close" size={24} color={COLORS.gray[900]} />
+          <Icon id="close" size={24} color="var(--color-gray-900)" />
         </CloseButton>
+        <Filler />
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -63,37 +64,51 @@ const Content = styled(DialogContent)`
 `;
 
 const CloseButton = styled(UnstyledButton)`
-  align-self: flex-end;
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  padding: 16px;
+
+  @media ${QUERIES.phoneAndDown} {
+    top: 10px;
+    right: 0;
+  }
+`;
+
+const Filler = styled.div`
+  flex: 1;
 `;
 
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 16px;
 `;
 
 const NavLink = styled.a`
   color: var(--color-gray-900);
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: ${WEIGHTS.medium};
   text-decoration: none;
   text-transform: uppercase;
 
-  &:hover {
+  &:first-of-type {
     color: var(--color-secondary);
   }
 `;
 
 const Footer = styled.footer`
+  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   gap: 14px;
 `;
 
 const FooterLink = styled.a`
   display: block;
   color: var(--color-gray-700);
-  font-size: 14px;
+  font-size: 0.875rem;
   text-decoration: none;
 `;
 

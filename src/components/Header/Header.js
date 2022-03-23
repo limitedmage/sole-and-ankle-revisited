@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { COLORS, QUERIES, WEIGHTS } from "../../constants";
+import { QUERIES, WEIGHTS } from "../../constants";
 import Logo from "../Logo";
 import SuperHeader from "../SuperHeader";
 import MobileMenu from "../MobileMenu";
 import Icon from "../Icon";
 import UnstyledButton from "../UnstyledButton";
+import VisuallyHidden from "../VisuallyHidden";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -15,9 +16,9 @@ const Header = () => {
     <header>
       <SuperHeader />
       <MainHeader>
-        <Side>
+        <LogoWrapper>
           <Logo />
-        </Side>
+        </LogoWrapper>
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -28,16 +29,19 @@ const Header = () => {
         </Nav>
         <MobileNav>
           <UnstyledButton>
-            <Icon id="shopping-bag" size={24} color={COLORS.gray[900]} />
+            <Icon id="shopping-bag" size={24} color="var(--color-gray-900)" />
+            <VisuallyHidden>Open cart</VisuallyHidden>
           </UnstyledButton>
           <UnstyledButton>
-            <Icon id="search" size={24} color={COLORS.gray[900]} />
+            <Icon id="search" size={24} color="var(--color-gray-900)" />
+            <VisuallyHidden>Search</VisuallyHidden>
           </UnstyledButton>
           <UnstyledButton onClick={() => setShowMobileMenu(true)}>
-            <Icon id="menu" size={24} color={COLORS.gray[900]} />
+            <Icon id="menu" size={24} color="var(--color-gray-900)" />
+            <VisuallyHidden>Open menu</VisuallyHidden>
           </UnstyledButton>
         </MobileNav>
-        <Side />
+        <Filler />
       </MainHeader>
 
       <MobileMenu
@@ -52,10 +56,13 @@ const MainHeader = styled.div`
   display: flex;
   align-items: baseline;
   padding: 18px 32px;
-  height: 72px;
   border-bottom: 1px solid var(--color-gray-300);
   overflow-x: auto;
-  overflow-y: hidden;
+
+  @media ${QUERIES.tabletAndDown} {
+    justify-content: space-between;
+    align-items: center;
+  }
 
   @media ${QUERIES.phoneAndDown} {
     padding-left: 16px;
@@ -65,7 +72,7 @@ const MainHeader = styled.div`
 
 const Nav = styled.nav`
   display: flex;
-  gap: 48px;
+  gap: clamp(1rem, 9.2vw - 4.5rem, 3.5rem);
   margin: 0px 48px;
 
   @media ${QUERIES.tabletAndDown} {
@@ -73,13 +80,19 @@ const Nav = styled.nav`
   }
 `;
 
-const Side = styled.div`
+const LogoWrapper = styled.div`
   flex: 1;
 
   @media ${QUERIES.tabletAndDown} {
-    &:last-child {
-      display: none;
-    }
+    flex: revert;
+  }
+`;
+
+const Filler = styled.div`
+  flex: 1;
+
+  @media ${QUERIES.tabletAndDown} {
+    display: none;
   }
 `;
 

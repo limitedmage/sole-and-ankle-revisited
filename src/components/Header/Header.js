@@ -21,7 +21,7 @@ const Header = () => {
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
+          <NavLink href="/men">Men Thisisaverylongname</NavLink>
           <NavLink href="/women">Women</NavLink>
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
@@ -53,7 +53,9 @@ const MainHeader = styled.div`
   align-items: baseline;
   padding: 18px 32px;
   height: 72px;
-  border-bottom: 1px solid ${COLORS.gray[300]};
+  border-bottom: 1px solid var(--color-gray-300);
+  overflow-x: auto;
+  overflow-y: hidden;
 
   @media ${QUERIES.phoneAndDown} {
     padding-left: 16px;
@@ -85,11 +87,12 @@ const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  white-space: nowrap;
 
   &:first-of-type {
-    color: ${COLORS.secondary};
+    color: var(--color-seconday);
   }
 `;
 

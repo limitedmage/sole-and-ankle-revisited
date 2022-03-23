@@ -46,7 +46,7 @@ const Overlay = styled(DialogOverlay)`
   right: 0;
   bottom: 0;
 
-  background-color: ${COLORS.overlay};
+  background-color: var(--color-overlay);
 `;
 
 const Content = styled(DialogContent)`
@@ -58,7 +58,7 @@ const Content = styled(DialogContent)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${COLORS.white};
+  background-color: var(--color-white);
   padding: 26px 16px 32px 32px;
 `;
 
@@ -73,14 +73,14 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled.a`
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   font-size: 18px;
   font-weight: ${WEIGHTS.medium};
   text-decoration: none;
   text-transform: uppercase;
 
   &:hover {
-    color: ${COLORS.secondary};
+    color: var(--color-secondary);
   }
 `;
 
@@ -92,7 +92,7 @@ const Footer = styled.footer`
 
 const FooterLink = styled.a`
   display: block;
-  color: ${COLORS.gray[700]};
+  color: var(--color-gray-700);
   font-size: 14px;
   text-decoration: none;
 `;
